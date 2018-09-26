@@ -1,19 +1,19 @@
 /*!
- *  redsys-polite - 1.4.2
+ *  redsys-polite - 1.4.3
  *  Marc Pomar Torres - marc@faable.com 
  *  created by Faable.com 
  *  file:redsys-polite.js 
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("crypto"));
+		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define(["crypto"], factory);
+		define([], factory);
 	else {
-		var a = typeof exports === 'object' ? factory(require("crypto")) : factory(root["crypto"]);
+		var a = factory();
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -253,7 +253,7 @@ var Redsys = function () {
         'DS_MERCHANT_TITULAR': this.titular,
         'DS_MERCHANT_MERCHANTNAME': this.name,
         'DS_MERCHANT_IDENTIFIER': this.setPayByReference,
-        'DS_MERCHANT_DIRECTPAYMENT': this.enableDirectPayment
+        'DS_MERCHANT_DIRECTPAYMENT': this.directPayment
         // Test code
         //"DS_MERCHANT_PAN":"4548812049400004",
         //"DS_MERCHANT_EXPIRYDATE":"1220",
@@ -325,7 +325,7 @@ var RedsysBuilder = function () {
     this.language = "auto";
     this.transaction_type = "0";
     this.setPayByReference = '';
-    this.enableDirectPayment = false;
+    this.directPayment = false;
     // Production URL
     this.url = "https://sis.redsys.es/sis/realizarPago";
   }
@@ -339,7 +339,7 @@ var RedsysBuilder = function () {
   }, {
     key: "setTerminal",
     value: function setTerminal(terminal_number) {
-      this.terminal = terminal_numbver;
+      this.terminal = terminal_number;
       return this;
     }
   }, {
@@ -363,7 +363,7 @@ var RedsysBuilder = function () {
   }, {
     key: "enableDirectPayment",
     value: function enableDirectPayment() {
-      this.enableDirectPayment = true;
+      this.directPayment = true;
       return this;
     }
   }, {
